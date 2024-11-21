@@ -77,3 +77,9 @@ vim.keymap.set("n", "<leader>q", ":q<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>fg", ":copen | :silent :grep ")
 vim.keymap.set("n", "]q", ":cnext<CR>")
 vim.keymap.set("n", "[q", ":cprev<CR>")
+
+--mapping for git workflow
+vim.api.nvim_set_keymap("n", "<leader>q", ":DiffviewClose<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>gd", ":Gdiffsplit<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>do", ":DiffviewOpen<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>dh", ":DiffviewFileHistory<CR>", { noremap = true, silent = true })
