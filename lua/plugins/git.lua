@@ -20,6 +20,7 @@ return {
 	{
 		"tpope/vim-fugitive",
 		cmd = { "Git", "Gdiffsplit", "Gread", "Gwrite", "Ggrep", "Gmove", "Gdelete", "Gbrowse" },
+		vim.keymap.set("n", "<leader>gs", vim.cmd.Git),
 	},
 
 	-- Diffview for Git diffs and history

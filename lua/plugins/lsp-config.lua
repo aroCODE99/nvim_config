@@ -1,99 +1,87 @@
 return {
-    {
-        "williamboman/mason.nvim",
-        lazy = false,
-        config = function()
-            require("mason").setup()
-        end,
-    },
-    {
-        "williamboman/mason-lspconfig.nvim",
-        lazy = false,
-        opts = {
-            ensure_installed = {
-                "jdtls",
-                "ts_ls",
-                "clangd",
-                "html",
-            },
-            auto_install = true,
-        },
-    },
-    {
-        "neovim/nvim-lspconfig",
-        lazy = false,
-        config = function()
-            local lspconfig = require("lspconfig")
+	{
+		"williamboman/mason.nvim",
+		lazy = false,
+		config = function()
+			require("mason").setup()
+		end,
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		lazy = false,
+		opts = {
+			ensure_installed = {
+				"jdtls",
+				"pyright",
+				"ts_ls",
+				"clangd",
+				"html",
+			},
+			auto_install = true,
+		},
+	},
+	{
+		"neovim/nvim-lspconfig",
+		lazy = false,
+		config = function()
+			local lspconfig = require("lspconfig")
 
-            local function on_attach(client, bufnr)
-                print("LSP server attached")
-                if client.server_capabilities.semanticTokensProvider then
-                    client.server_capabilities.semanticTokensProvider = nil
-                end
-                local bufopts = { noremap = true, silent = true, buffer = bufnr }
-                vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-                vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-                vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-                vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, bufopts)
-                vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
-            end
+			local function on_attach(client, bufnr)
+				print("LSP server attached")
+				if client.server_capabilities.semanticTokensProvider then
+					client.server_capabilities.semanticTokensProvider = nil
+				end
+				local bufopts = { noremap = true, silent = true, buffer = bufnr }
+				vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+				vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+				vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+				vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, bufopts)
+				vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+			end
 
-            lspconfig.lua_ls.setup({
-                on_attach = on_attach,
-                settings = {
-                    Lua = {
-                        diagnostics = {
-                            globals = { "vim" },
-                        },
-                    },
-                },
-            })
+			lspconfig.lua_ls.setup({
+				on_attach = on_attach,
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+					},
+				},
+			})
 
-            lspconfig.ts_ls.setup({
-                on_attach = on_attach,
-            })
+			lspconfig.ts_ls.setup({
+				on_attach = on_attach,
+			})
 
-            lspconfig.clangd.setup({
-                on_attach = on_attach,
-            })
+			lspconfig.clangd.setup({
+				on_attach = on_attach,
+			})
 
-            lspconfig.pyright.setup({
-                on_attach = on_attach,
-            })
+			lspconfig.pyright.setup({
+				on_attach = on_attach,
+			})
 
-            lspconfig.html.setup({
-                on_attach = on_attach,
-            })
+			lspconfig.html.setup({
+				on_attach = on_attach,
+			})
 
-            lspconfig.jdtls.setup({
-                on_attach = on_attach,
-                settings = {
-                    java = {
-                        completion = {
-                            favoriteStaticMembers = {
-                                "java.util.Collections.*",
-                                "java.util.Objects.*",
-                                "org.junit.Assert.*",
-                            },
-                            importOrder = {
-                                "java",
-                                "javax",
-                                "com",
-                                "org",
-                            },
-                        },
-                        diagnostics = {
-                            enabled = true,
-                            severity = {
-                                error = 1,
-                                warning = 2,
-                                info = 3,
-                                hint = 4,
-                            },
-                        },
-                    },
-                },
-            })
-        end,
-    },
+			lspconfig.jdtls.setup({
+				on_attach = on_attach,
+				flags = {
+					debounce_text_changes = 150,
+				},
+				root_dir = lspconfig.util.root_pattern("pom.xml", "build.gradle", ".git"),
+				settings = {
+					java = {
+						organizeImports = true,
+					},
+					codeGeneration = {
+						generateGettersSetters = true,
+						generateEqualsAndHashCode = true,
+					},
+				},
+			})
+		end,
+	},
 }

@@ -2,7 +2,7 @@ local opt = vim.opt
 
 -- for Searching ditching telescope
 opt.path:append("**")
-opt.wildignore:append("*.class*,")  
+opt.wildignore:append("*.class*,")
 --grep configureation
 vim.opt.grepprg = "rg --vimgrep $* ."
 vim.opt.grepformat = "%f:%l:%c:%m"
@@ -13,11 +13,11 @@ vim.api.nvim_set_hl(0, "YankHighlight", { bg = "#ffeb3b", fg = "#000000" }) -- Y
 -- Create an autocmd group and apply yank highlight
 vim.api.nvim_create_augroup("highlight_yank", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-    group = "highlight_yank",
-    pattern = "*",
-    callback = function()
-        vim.highlight.on_yank({ higroup = "YankHighlight", timeout = 200 })
-    end,
+	group = "highlight_yank",
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank({ higroup = "YankHighlight", timeout = 200 })
+	end,
 })
 
 -- Tab / Indentation
@@ -67,4 +67,4 @@ opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldlevel = 99
 
-opt.statusline = "%< %h%m%r%=%-14.(%l,%c%V%) %P %{mode()}"
+vim.opt.statusline = "%t %y %m %= %l,%c [%{mode()}]"
