@@ -1,36 +1,36 @@
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "python",
-    callback = function()
-        vim.api.nvim_buf_set_keymap(0, "n", "<F5>", ":w<cr>:!python3 %<CR>", { noremap = true, silent = true })
-    end,
+	pattern = "python",
+	callback = function()
+		vim.api.nvim_buf_set_keymap(0, "n", "<F5>", ":w<cr>:!python3 %<CR>", { noremap = true, silent = true })
+	end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "java",
-    callback = function()
-        vim.api.nvim_buf_set_keymap(
-            0,
-            "n",
-            "<F5>",
-            ":w<cr>:!cd %:p:h && javac %:t && java %:t:r<cr>",
-            { noremap = true, silent = true }
-        )
-    end,
+	pattern = "java",
+	callback = function()
+		vim.api.nvim_buf_set_keymap(
+			0,
+			"n",
+			"<F5>",
+			":w<cr>:!cd %:p:h && javac %:t && java %:t:r<cr>",
+			{ noremap = true, silent = true }
+		)
+	end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "c",
-    callback = function()
-        vim.api.nvim_buf_set_keymap(
-            0,
-            "n",
-            "<F5>",
-            ":w<cr>:!cd %:p:h && gcc %:t -o %:t:r && ./%:t:r<cr>",
-            { noremap = true, silent = true }
-        )
-    end,
+	pattern = "c",
+	callback = function()
+		vim.api.nvim_buf_set_keymap(
+			0,
+			"n",
+			"<F5>",
+			":w<cr>:!cd %:p:h && gcc %:t -o %:t:r && ./%:t:r<cr>",
+			{ noremap = true, silent = true }
+		)
+	end,
 })
--- Pane and Winow Navigation
+-- Pane and window Navigation
 vim.keymap.set("n", "<C-h>", "<C-w>h", { noremap = true, silent = true }) -- Navigate Left
 vim.keymap.set("n", "<C-j>", "<C-w>j", { noremap = true, silent = true }) -- Navigate Down
 vim.keymap.set("n", "<C-k>", "<C-w>k", { noremap = true, silent = true }) -- Navigate Up
@@ -43,12 +43,12 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, silent = true }) -- Nav
 -- vim.keymap.set("n", "<s-tab>", ":tabprev<Return>", {})
 
 -- Window Management
-vim.keymap.set("n", "<leader>ss", ":vsplit<CR>", { noremap = true, silent = true })            -- Split Vertically
-vim.keymap.set("n", "<leader>sh", ":split<CR>", { noremap = true, silent = true })             -- Split Horizontally
+vim.keymap.set("n", "<leader>ss", ":vsplit<CR>", { noremap = true, silent = true }) -- Split Vertically
+vim.keymap.set("n", "<leader>sh", ":split<CR>", { noremap = true, silent = true }) -- Split Horizontally
 --resizing keymaps
-vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { noremap = true, silent = true })             -- Increase height
-vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { noremap = true, silent = true })           -- Decrease height
-vim.keymap.set("n", "<C-Left>", ":vertical resize +2<CR>", { noremap = true, silent = true })  -- Increase width
+vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { noremap = true, silent = true }) -- Increase height
+vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { noremap = true, silent = true }) -- Decrease height
+vim.keymap.set("n", "<C-Left>", ":vertical resize +2<CR>", { noremap = true, silent = true }) -- Increase width
 vim.keymap.set("n", "<C-Right>", ":vertical resize -2<CR>", { noremap = true, silent = true }) -- Decrease width
 
 -- Show Full File Path

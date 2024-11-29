@@ -3,7 +3,9 @@ return {
 		"williamboman/mason.nvim",
 		lazy = false,
 		config = function()
-			require("mason").setup()
+			require("mason").setup({
+				log_level = vim.log.levels.DEBUG,
+			})
 		end,
 	},
 	{
@@ -11,13 +13,13 @@ return {
 		lazy = false,
 		opts = {
 			ensure_installed = {
-				"jdtls",
 				"pyright",
+				"jdtls",
 				"ts_ls",
 				"clangd",
 				"html",
+				"lua_ls",
 			},
-			auto_install = true,
 		},
 	},
 	{

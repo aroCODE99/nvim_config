@@ -1,8 +1,8 @@
 local opt = vim.opt
 
 -- for Searching ditching telescope
-opt.path:append("**")
-opt.wildignore:append("*.class*,")
+opt.path:append("**/.*")
+opt.wildignore:append("*.class*,!.*/")
 --grep configureation
 vim.opt.grepprg = "rg --vimgrep $* ."
 vim.opt.grepformat = "%f:%l:%c:%m"
@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = "highlight_yank",
 	pattern = "*",
 	callback = function()
-		vim.highlight.on_yank({ higroup = "YankHighlight", timeout = 200 })
+		vim.highlight.on_yank({ higroup = "YankHighlight", timeout = 150 })
 	end,
 })
 
@@ -30,9 +30,8 @@ opt.wrap = false
 
 -- Search
 opt.incsearch = true
-opt.ignorecase = true
 opt.smartcase = true
-opt.hlsearch = true
+-- opt.hlsearch = true
 
 -- Appearance
 opt.number = true
@@ -67,4 +66,6 @@ opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldlevel = 99
 
-vim.opt.statusline = "%t %y %m %= %l,%c [%{mode()}]"
+vim.opt.statusline = "%t %m %= %l,%c "
+
+vim.cmd("syntax on")
