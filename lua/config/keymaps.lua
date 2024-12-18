@@ -1,7 +1,7 @@
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "python",
 	callback = function()
-		vim.api.nvim_buf_set_keymap(0, "n", "<F5>", ":w<cr>:!python3 %<CR>", { noremap = true, silent = true })
+		vim.api.nvim_buf_set_keymap(0, "n", "<C-'>", ":w<cr>:!python3 %<CR>", { noremap = true, silent = true })
 	end,
 })
 
@@ -42,9 +42,6 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, silent = true }) -- Nav
 -- vim.keymap.set("n", "<tab>", ":tabnext<Return>", {})
 -- vim.keymap.set("n", "<s-tab>", ":tabprev<Return>", {})
 
--- Window Management
-vim.keymap.set("n", "<leader>ss", ":vsplit<CR>", { noremap = true, silent = true }) -- Split Vertically
-vim.keymap.set("n", "<leader>sh", ":split<CR>", { noremap = true, silent = true }) -- Split Horizontally
 --resizing keymaps
 vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { noremap = true, silent = true }) -- Increase height
 vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { noremap = true, silent = true }) -- Decrease height
